@@ -20,14 +20,15 @@ st.markdown(
 
 with st.form(key="my_form"):
     text_input = st.text_area(label="Tweet goes here...")
-    uploaded_files = st.file_uploader(
-        "OPTIONAL: Upload tweet attachments",
-        accept_multiple_files=True,
-        type=["jpg", "jpeg", "png"],
-    )
+    # uploaded_files = st.file_uploader(
+    #     "OPTIONAL: Upload tweet attachments",
+    #     accept_multiple_files=True,
+    #     type=["jpg", "jpeg", "png"],
+    # )
     submit_button = st.form_submit_button(label="Submit")
 
-image_attachments = uploaded_files if uploaded_files else []
+# image_attachments = uploaded_files if uploaded_files else []
+image_attachments = []
 
 if submit_button:
     with st.spinner("Analysing tweet..."):
