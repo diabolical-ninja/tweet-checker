@@ -5,7 +5,7 @@ from langchain.globals import set_verbose
 from langchain_anthropic import ChatAnthropic
 
 from prompt import PARSER, format_and_return_prompt
-from utils import encode_image
+from utils import format_image_prompt
 
 set_verbose(True)
 load_dotenv(find_dotenv(usecwd=True))
@@ -31,7 +31,7 @@ else:
 def analyse_tweet(tweet, attachments):
 
     num_attachments = len(attachments)
-    image_attachments = [encode_image(attachment) for attachment in attachments]
+    image_attachments = [format_image_prompt(attachment) for attachment in attachments]
 
     prompt = format_and_return_prompt(tweet, image_attachments)
 
@@ -44,6 +44,3 @@ def analyse_tweet(tweet, attachments):
             "tweet": tweet,
         }
     )
-
-
-# %%
