@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "tweet-checker"
+version = "0.1.0"
+description = ""
+authors = ["Yass Eltahir <15998949+diabolical-ninja@users.noreply.github.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+httpx = "^0.27.2"
+langchain = "^0.2.15"
+langchain-anthropic = "^0.1.23"
+python-dotenv = "^1.0.1"
+streamlit = "^1.38.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.2"
+mypy = "^1.11.2"
+black = "^24.8.0"
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
