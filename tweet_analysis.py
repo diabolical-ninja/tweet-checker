@@ -35,9 +35,8 @@ def analyse_tweet(tweet, attachments):
 
     prompt = format_and_return_prompt(tweet, image_attachments)
 
-    print("before")
     query_chain = prompt | llm | PARSER
-    print("after")
+
     return query_chain.invoke(
         {
             "num_attachments": num_attachments,
