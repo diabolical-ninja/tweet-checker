@@ -19,7 +19,7 @@ st.markdown(
 with st.form(key="my_form"):
     text_input = st.text_area(label="Tweet goes here...")
     uploaded_files = st.file_uploader(
-        "OPTIONAL: Upload tweet attachments",
+        "OPTIONAL: Upload tweet images",
         accept_multiple_files=True,
         type=["jpg", "jpeg", "png"],
     )
