@@ -5,7 +5,7 @@ Here's our first attempt at using data to create a table:
 
 import streamlit as st
 
-from tweet_analysis import analyse_tweet
+from src.tweet_analysis import analyse_tweet
 
 st.title("Tweet Checker 🐦")
 st.markdown(

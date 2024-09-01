@@ -4,8 +4,8 @@ from dotenv import find_dotenv, load_dotenv
 from langchain.globals import set_verbose
 from langchain_anthropic import ChatAnthropic
 
-from prompt import PARSER, format_and_return_prompt
-from utils import format_image_prompt
+from src.prompt import PARSER, format_and_return_prompt
+from src.utils import format_image_prompt
 
 set_verbose(True)
 load_dotenv(find_dotenv(usecwd=True))
