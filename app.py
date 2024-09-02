@@ -17,7 +17,10 @@ st.markdown(
 )
 
 with st.form(key="my_form"):
-    text_input = st.text_area(label="Tweet goes here...")
+    text_input = st.text_area(
+        label="Tweet goes here...",
+        placeholder="Copy and paste the tweet text here (not the URL)",
+    )
     uploaded_files = st.file_uploader(
         "OPTIONAL: Upload tweet images",
         accept_multiple_files=True,
