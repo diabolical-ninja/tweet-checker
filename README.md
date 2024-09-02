@@ -15,8 +15,10 @@ Unfortunately the free tier of the Twitter API does not allow `GET`s so you'll h
 
 ## Running
 
-Claude is used as the backend so you'll need an API key from them. Add it to your `.env` file, ala `.env.example`:
+The apps allows you to pick from the 3 main close-source models. You'll need an API for each (or modify the app to just use 1). Add it to your `.env` file, ala `.env.example`:
 - `ANTHROPIC_API_KEY="a really really good key"`
+- `OPENAI_API_KEY="also a really good key"`
+- `GOOGLE_API_KEY="possibly the best good key"`
 
 Run the app:
 ```bash
