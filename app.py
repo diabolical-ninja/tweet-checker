@@ -23,6 +23,13 @@ with st.form(key="my_form"):
         accept_multiple_files=True,
         type=["jpg", "jpeg", "png"],
     )
+
+    preferred_model = st.radio(
+        "Select your model:",
+        ["Claude", "OpenAI", "Gemini"],
+        captions=["3.5 Sonnet", "GPT-4o", "Gemini 1.5 Pro"],
+    )
+
     submit_button = st.form_submit_button(label="Submit")
 
 image_attachments = uploaded_files if uploaded_files else []
@@ -30,7 +37,7 @@ image_attachments = uploaded_files if uploaded_files else []
 
 if submit_button:
     with st.spinner("Analysing tweet..."):
-        tweet_analysis = analyse_tweet(text_input, image_attachments)
+        tweet_analysis = analyse_tweet(text_input, image_attachments, preferred_model)
 
     st.header("Tweet Analysis")
     st.subheader(f"Bias Rating: {tweet_analysis.bias.rating}/10")

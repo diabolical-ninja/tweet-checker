@@ -1,7 +1,7 @@
 import base64
 
 
-def format_image_prompt(image):
+def format_image_url_prompt(image):
     """_summary_
 
     Args:
@@ -9,11 +9,12 @@ def format_image_prompt(image):
             - https://docs.streamlit.io/develop/api-reference/widgets/st.file_uploader
     """
     image_type = image.type
+    # bytes_data = image.getvalue()
     base64_image = get_base64_encoded_image(image.getvalue())
 
     return {
-        "type": "image",
-        "source": {"type": "base64", "media_type": image_type, "data": base64_image},
+        "type": "image_url",
+        "image_url": {"url": f"data:{image_type};base64,{base64_image}"},
     }
 
 
