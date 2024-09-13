@@ -11,7 +11,7 @@ And yes, I know, the LLM obviously doesn't know if new events are true/false but
 
 Unfortunately the free tier of the Twitter API does not allow `GET`s so you'll have to be a common-day pleb & copy+paste tweet info across (strictly speaking you're not confined to tweets tbh). Don't forget to upload any attached photos (only photos) for additional context. 
 
-{insert a little gif}
+![demo](tweet_checker_demo_large.gif)
 
 ## Running
 
