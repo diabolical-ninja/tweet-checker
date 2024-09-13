@@ -5,6 +5,7 @@ Here's our first attempt at using data to create a table:
 
 import streamlit as st
 
+from src.prompt import TweetAnalysis
 from src.tweet_analysis import analyse_tweet
 
 st.title("Tweet Checker 🐦")
@@ -43,11 +44,14 @@ if submit_button:
         tweet_analysis = analyse_tweet(text_input, image_attachments, preferred_model)
 
     st.header("Tweet Analysis")
-    st.subheader(f"Bias Rating: {tweet_analysis.bias.rating}/10")
-    st.write(tweet_analysis.bias.spectrum.title())
+    if isinstance(tweet_analysis, TweetAnalysis):
+        st.subheader(f"Bias Rating: {tweet_analysis.bias.rating}/10")
+        st.write(tweet_analysis.bias.spectrum.title())
 
-    st.subheader(f"Factual Accuracy: {tweet_analysis.accuracy.rating}/5")
-    st.write(tweet_analysis.accuracy.description)
+        st.subheader(f"Factual Accuracy: {tweet_analysis.accuracy.rating}/5")
+        st.write(tweet_analysis.accuracy.description)
 
-    st.subheader("Summary:")
-    st.write(f"{tweet_analysis.summary}")
+        st.subheader("Summary:")
+        st.write(f"{tweet_analysis.summary}")
+    else:
+        st.write(tweet_analysis)

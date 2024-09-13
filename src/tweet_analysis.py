@@ -3,6 +3,7 @@ from dataclasses import asdict
 from dotenv import find_dotenv, load_dotenv
 from langchain.globals import set_verbose
 from langchain_anthropic import ChatAnthropic
+from langchain_core.exceptions import OutputParserException
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_openai import ChatOpenAI
@@ -60,7 +61,7 @@ def select_llm(model_name: str) -> BaseChatModel:
 
 def analyse_tweet(
     tweet: str, attachments: list, model_name: str = "Claude"
-) -> TweetAnalysis:
+) -> TweetAnalysis | str:
     """Orchestrates generating a prompt and analysing a tweet via the selected LLM.
 
     Args:
@@ -85,10 +86,18 @@ def analyse_tweet(
     llm = select_llm(model_name)
     query_chain = formatted_prompt | llm | PARSER
 
-    model_response: TweetAnalysis = query_chain.invoke(
-        {
-            "num_attachments": num_attachments,
-            "tweet": tweet,
-        }
-    )
+    try:
+        model_response: TweetAnalysis = query_chain.invoke(
+            {
+                "num_attachments": num_attachments,
+                "tweet": tweet,
+            }
+        )
+
+    except OutputParserException as parser_error:
+        model_response: str = (
+            f"The model made a boo-boo:  \n\n {parser_error.llm_output}"
+        )
+    except Exception:
+        model_response: str = "Oh no, something went wrong ☹️"
     return model_response
