@@ -1,7 +1,7 @@
 from langchain.output_parsers import PydanticOutputParser
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema import HumanMessage
-from langchain_core.pydantic_v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 
 
 class Bias(BaseModel):
@@ -11,14 +11,14 @@ class Bias(BaseModel):
     )
 
 
-class FactualAccuray(BaseModel):
+class FactualAccuracy(BaseModel):
     rating: int = Field(description="Factual accuracy rating between 1 and 5")
     description: str = Field(description="description of the accuracy rating")
 
 
 class TweetAnalysis(BaseModel):
     bias: Bias
-    accuracy: FactualAccuray
+    accuracy: FactualAccuracy
     summary: str = Field(description="Summary of the tweet")
 
 
@@ -38,8 +38,16 @@ The tweet had {num_attachments} attachments. The tweet is as follows:
 """
 
 
-def format_and_return_prompt(tweet, image_attachments: list):
+def format_and_return_prompt(tweet: str, image_attachments: list) -> ChatPromptTemplate:
+    """Creates a formatted prompt to be send to the LLM.
 
+    Args:
+        tweet (str): Tweet text
+        image_attachments (list): All attachments to be included in the prompt. Can be of length 0.
+
+    Returns:
+        ChatPromptTemplate: Formatted template containing the tweet and image attachments
+    """
     num_attachements = len(image_attachments)
     content = [
         {
