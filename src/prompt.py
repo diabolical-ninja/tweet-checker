@@ -7,7 +7,7 @@ from pydantic import BaseModel, Field
 class Bias(BaseModel):
     rating: int = Field(description="Bias rating between 1 and 10")
     spectrum: str = Field(
-        description="Spectrum of bias (left learning, neutral, right leaning)"
+        description="Spectrum of bias (left leaning, neutral, right leaning)"
     )
 
 

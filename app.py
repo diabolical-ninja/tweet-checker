@@ -11,7 +11,7 @@ from src.tweet_analysis import analyse_tweet
 st.title("Tweet Checker 🐦")
 st.markdown(
     """
-    Curious whether a tweet is influencing your or telling you straight up fibs? 🤔
+    Curious whether a tweet is influencing you or telling you straight up fibs? 🤔
     
     TweetChecker is here to save the save giving you a bias and factual accuracy assessment of your tweets 👌🏾
     """
